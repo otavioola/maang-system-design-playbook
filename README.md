@@ -42,42 +42,65 @@ maang-system-design-playbook/
 │
 ├── README.md
 │
-├── fundamentals/
-│   ├── scalability-basics.md
-│   ├── latency-vs-throughput.md
-│   ├── consistency-models.md
-│   └── capacity-estimation.md
+├── fundamentals/                    # Start here - Core principles
+│   ├── 01-architecture-basics.md
+│   ├── 02-scalability-basics.md
+│   ├── 03-latency-throughput.md
+│   ├── 04-consistency-patterns.md
+│   ├── 05-performance-metrics.md
+│   ├── 06-capacity-estimation.md
+│   └── 07-concurrency.md
 │
-├── interview-frameworks/
-│   ├── maang-interview-flow.md
-│   ├── how-to-ask-clarifying-questions.md
-│   └── how-to-explain-tradeoffs.md
+├── building-blocks/                  # System components
+│   ├── 01-load-balancers.md
+│   ├── 02-databases-sql-nosql.md
+│   ├── 03-caches.md
+│   ├── 04-message-queues.md
+│   ├── 05-queues-streams.md
+│   ├── 06-cdn.md
+│   ├── 07-indexing.md
+│   └── 08-search-services.md
 │
-├── components/
-│   ├── load-balancers.md
-│   ├── databases.md
-│   ├── caches.md
-│   ├── message-queues.md
-│   └── cdn.md
+├── patterns-and-paradigms/           # Architectural patterns
+│   ├── 01-microservices-vs-monolith.md
+│   ├── 02-event-driven.md
+│   ├── 03-pub-sub.md
+│   ├── 04-grpc-vs-rest.md
+│   └── 05-sagas-cqrs.md
 │
-├── tradeoffs/
-│   ├── sql-vs-nosql.md
-│   ├── push-vs-pull.md
-│   ├── sync-vs-async.md
-│   └── polling-vs-streaming.md
+├── tradeoffs/                        # Decision-making frameworks
+│   ├── 01-sql-vs-nosql.md
+│   ├── 02-consistency-vs-availability.md
+│   ├── 03-sync-vs-async.md
+│   ├── 04-push-vs-pull.md
+│   ├── 05-polling-vs-streaming.md
+│   └── 06-cost-vs-performance.md
 │
-├── diagrams-as-text/
-│   ├── common-architecture-patterns.md
+├── interview-skills/                 # How to interview
+│   ├── 01-maang-interview-flow.md
+│   ├── 02-clarifying-questions.md
+│   ├── 03-how-to-communicate.md
+│   ├── 04-how-to-explain-tradeoffs.md
+│   ├── 05-common-interview-phrases.md
+│   └── 06-sample-interviews.md
 │
-└── case-studies/
-    ├── url-shortener.md
-    ├── chat-system.md
-    ├── rate-limiter.md
-    ├── notification-system.md
-    ├── file-storage.md
-    ├── news-feed.md
-    └── search-autocomplete.md
+├── diagrams-as-text/                 # Visual patterns
+│   ├── 01-basic-components.txt
+│   ├── 02-system-patterns.txt
+│   └── 03-common-architecture-patterns.md
+│
+└── case-studies/                     # Practice problems
+    ├── 01-url-shortener.md
+    ├── 02-chat-system.md
+    ├── 03-rate-limiter.md
+    ├── 04-notification-system.md
+    ├── 05-file-storage.md
+    ├── 06-news-feed.md
+    ├── 07-search-autocomplete.md
+    └── 08-load-balancing-at-scale.md
 ```
+
+> **Note**: Files are numbered in recommended learning order. Start with `01-` in each directory and progress sequentially.
 
 ---
 
@@ -218,13 +241,14 @@ This sentence matters more than the diagram.
 
 **For Interview Prep (Recommended Path):**
 
-1. **Start Here**: Read `interview-frameworks/maang-interview-flow.md` to understand the 45-minute structure
+1. **Start Here**: Read `interview-skills/01-maang-interview-flow.md` to understand the 45-minute structure
 2. **Learn the Format**: Memorize the 11-step framework (Problem → Clarifying → Requirements → ... → Common Mistakes)
-3. **Master Fundamentals**: Read all files in `fundamentals/` to build your foundation
-4. **Study Components**: Understand `components/` (load balancers, databases, caches, etc.)
-5. **Practice Case Studies**: Work through `case-studies/` one by one, speaking your answers aloud
-6. **Internalize Trade-offs**: Study `tradeoffs/` to learn decision-making frameworks
-7. **Simulate Interviews**: Pick a random case study, set a 45-minute timer, and design it end-to-end
+3. **Master Fundamentals**: Read `fundamentals/` in order (01 → 07) to build your foundation
+4. **Study Building Blocks**: Understand `building-blocks/` in order (01 → 08) - components you'll use
+5. **Learn Patterns**: Study `patterns-and-paradigms/` (01 → 05) - architectural approaches
+6. **Internalize Trade-offs**: Study `tradeoffs/` (01 → 06) - decision-making frameworks
+7. **Practice Case Studies**: Work through `case-studies/` (01 → 08) one by one, speaking your answers aloud
+8. **Simulate Interviews**: Pick a random case study, set a 45-minute timer, and design it end-to-end
 
 **Pro Tips:**
 
