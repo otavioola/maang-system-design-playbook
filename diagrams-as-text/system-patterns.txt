@@ -1,0 +1,233 @@
+SYSTEM DESIGN PATTERNS (ASCII Diagrams)
+========================================
+
+1. CACHE-ASIDE (LAZY LOADING)
+------------------------------
+Request Flow:
+┌──────┐
+│Client│
+└──┬───┘
+   │ 1. Check Cache
+   ↓
+┌──────┐
+│Cache │ → Hit: Return (fast)
+└──┬───┘
+   │ Miss
+   ↓
+┌──────┐
+│  DB  │ → 2. Query DB
+└──┬───┘
+   │ 3. Store in Cache
+   ↓
+┌──────┐
+│Cache │ → 4. Return to Client
+└──────┘
+
+
+2. WRITE-THROUGH CACHE
+------------------------
+Write Flow:
+┌──────┐
+│Client│
+└──┬───┘
+   │ Write
+   ↓
+┌──────┐
+│Cache │ → 1. Write to Cache
+└──┬───┘
+   │ 2. Write to DB (sync)
+   ↓
+┌──────┐
+│  DB  │ → 3. Return Success
+└──────┘
+
+
+3. WRITE-BEHIND (WRITE-BACK)
+-----------------------------
+Write Flow:
+┌──────┐
+│Client│
+└──┬───┘
+   │ Write
+   ↓
+┌──────┐
+│Cache │ → 1. Write to Cache
+└──┬───┘   → 2. Return Immediately
+   │
+   │ Async (background)
+   ↓
+┌──────┐
+│  DB  │ → 3. Write to DB later
+└──────┘
+
+
+4. SAGA PATTERN (ORCHESTRATION)
+--------------------------------
+┌──────────────┐
+│ Orchestrator │
+└──────┬───────┘
+       │
+   ┌───┴───┬──────────┬──────────┐
+   ↓       ↓          ↓          ↓
+┌─────┐ ┌─────┐   ┌─────┐   ┌─────┐
+│Step │ │Step │   │Step │   │Step │
+│  1  │ │  2  │   │  3  │   │  N  │
+└──┬──┘ └──┬──┘   └──┬──┘   └──┬──┘
+   │       │         │         │
+   │ If any fails → Compensate
+   └───────┴─────────┴─────────┘
+
+
+5. CQRS (COMMAND QUERY RESPONSIBILITY SEGREGATION)
+---------------------------------------------------
+Write Side:
+┌──────┐
+│Command│
+└──┬───┘
+   │
+   ↓
+┌─────────────┐
+│Command      │
+│Handler      │
+└──┬──────────┘
+   │
+   ↓
+┌─────────────┐
+│Event Store │
+└────────────┘
+
+Read Side:
+┌─────────────┐
+│Event Store  │
+└──┬──────────┘
+   │
+   ↓
+┌─────────────┐
+│ Projection  │
+└──┬──────────┘
+   │
+   ↓
+┌─────────────┐
+│ Read Model  │
+│ (Optimized) │
+└─────────────┘
+
+
+6. EVENT SOURCING
+------------------
+┌──────┐
+│Command│
+└──┬───┘
+   │
+   ↓
+┌─────────────┐
+│Event Store  │ → Append Event (immutable)
+│(Event Log)  │
+└──┬──────────┘
+   │
+   ├──────────┬──────────┬──────────┐
+   ↓          ↓          ↓          ↓
+┌─────┐   ┌─────┐   ┌─────┐   ┌─────┐
+│Proj │   │Proj │   │Proj │   │Proj │
+│  1  │   │  2  │   │  3  │   │  N  │
+└─────┘   └─────┘   └─────┘   └─────┘
+   │
+   ↓
+Rebuild State (replay events)
+
+
+7. CIRCUIT BREAKER
+-------------------
+┌──────┐
+│Client│
+└──┬───┘
+   │
+   ↓
+┌─────────────┐
+│Circuit      │
+│Breaker      │
+└──┬──────────┘
+   │
+   ├─ Closed: Normal operation
+   ├─ Open: Failing, reject requests
+   └─ Half-Open: Testing recovery
+   │
+   ↓
+┌──────┐
+│Service│
+└──────┘
+
+
+8. BULKHEAD PATTERN
+--------------------
+┌──────┐
+│Client│
+└──┬───┘
+   │
+   ├──────────┬──────────┬──────────┐
+   ↓          ↓          ↓          ↓
+┌─────┐   ┌─────┐   ┌─────┐   ┌─────┐
+│Pool │   │Pool │   │Pool │   │Pool │
+│  1  │   │  2  │   │  3  │   │  N  │
+└──┬──┘   └──┬──┘   └──┬──┘   └──┬──┘
+   │         │         │         │
+   ↓         ↓         ↓         ↓
+┌─────┐   ┌─────┐   ┌─────┐   ┌─────┐
+│Svc  │   │Svc  │   │Svc  │   │Svc  │
+│  1  │   │  2  │   │  3  │   │  N  │
+└─────┘   └─────┘   └─────┘   └─────┘
+Isolated resources prevent cascading failures
+
+
+9. API GATEWAY PATTERN
+-----------------------
+┌──────┐
+│Client│
+└──┬───┘
+   │
+   ↓
+┌─────────────┐
+│API Gateway  │ → Auth, Rate Limiting, Routing
+└──┬──────────┘
+   │
+   ├──────────┬──────────┬──────────┐
+   ↓          ↓          ↓          ↓
+┌─────┐   ┌─────┐   ┌─────┐   ┌─────┐
+│Svc  │   │Svc  │   │Svc  │   │Svc  │
+│  1  │   │  2  │   │  3  │   │  N  │
+└─────┘   └─────┘   └─────┘   └─────┘
+
+
+10. STRANGLER PATTERN (MONOLITH TO MICROSERVICES)
+---------------------------------------------------
+Phase 1: Monolith
+┌─────────────┐
+│  Monolith   │
+└─────────────┘
+
+Phase 2: Extract Service
+┌─────────────┐     ┌──────┐
+│  Monolith   │────→│Service│
+└─────────────┘     └──────┘
+
+Phase 3: More Services
+┌─────────────┐     ┌──────┐
+│  Monolith   │     │Svc 1 │
+│  (Smaller)  │     └──────┘
+└──────┬──────┘     ┌──────┐
+       │            │Svc 2 │
+       └───────────→└──────┘
+                    ┌──────┐
+                    │Svc N │
+                    └──────┘
+
+Phase 4: Fully Microservices
+       ┌──────┐
+       │Svc 1 │
+       └──────┘
+       ┌──────┐
+       │Svc 2 │
+       └──────┘
+       ┌──────┐
+       │Svc N │
+       └──────┘
